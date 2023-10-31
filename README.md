@@ -31,8 +31,18 @@ The Activity Processor consumes these events, processes the data, and stores the
 
 ## Implementation Steps:
 - Set up Cassandra
-    Create a keyspace for your project.
-    Define tables for user profiles and processed activity data.
+    Create a keyspace for your project:
+        user_activity
+    Define tables for user profiles and processed activity data:
+        CREATE TABLE user (id UUID PRIMARY KEY, name TEXT, age INT);
+        CREATE TABLE user_activity (
+            activity_id UUID PRIMARY KEY,
+            user_id UUID,
+            activity_type TEXT,
+            activity_timestamp TIMESTAMP,
+            activity_data TEXT
+        );
+
 
 - User Service
     Create a Spring Boot application.
